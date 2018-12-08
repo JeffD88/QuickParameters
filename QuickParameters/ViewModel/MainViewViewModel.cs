@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainViewModel.cs" company="CNC Software, Inc.">
-//   Copyright (c) 2017 CNC Software, Inc.
-// </copyright>
-// <summary>
-//  If this project is helpful please take a short survey at ->
-//  http://ux.mastercam.com/Surveys/APISDKSupport 
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace QuickParameters.ViewModel
+﻿namespace QuickParameters.ViewModel
 {
     using System;
     using System.Windows.Media;

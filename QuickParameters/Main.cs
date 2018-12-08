@@ -1,14 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Main.cs" company="CNC Software, Inc.">
-//   Copyright (c) 2017 CNC Software, Inc.
-// </copyright>
-// <summary>
-//  If this project is helpful please take a short survey at ->
-//  http://ux.mastercam.com/Surveys/APISDKSupport 
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace QuickParameters
+﻿namespace QuickParameters
 {
     using GalaSoft.MvvmLight.Messaging;
     using Mastercam.App;
@@ -22,11 +12,6 @@ namespace QuickParameters
 
         #region Public Override Methods
 
-        /// <summary>
-        /// The main entry point for your NETHook.
-        /// </summary>
-        /// <param name="param">System parameter.</param>
-        /// <returns>A <c>MCamReturn</c> return type representing the outcome of your NetHook application.</returns>
         public override MCamReturn Run(int param)
         {
             var view = new MainView();
