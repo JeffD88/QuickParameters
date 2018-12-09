@@ -84,7 +84,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="OperationNameTextBlock"
+        <TextBlock x:Name="HeadingTextBlock"
                    Grid.Row="1"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
@@ -93,13 +93,14 @@
                    FontSize="16"
                    TextAlignment="Center"
                    Foreground="{Binding HeadingBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                   Text="{Binding OperationName, UpdateSourceTrigger=PropertyChanged}"/>
+                   Text="{Binding OperationHeading, UpdateSourceTrigger=PropertyChanged}"/>
         <Label x:Name="ToolNameLabel"
                Grid.Row="2"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Tool Name" FontSize="16"
+               Content="{Binding ToolNameLabel}" 
+               FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolNameTextBlock"
                    Grid.Row="2"
@@ -114,7 +115,8 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Tool Number" FontSize="16"
+               Content="{Binding ToolNumberLabel}" 
+               FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolNumberTextBlock"
                    Grid.Row="3"
@@ -129,7 +131,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Tool Diameter" 
+               Content="{Binding ToolDiameterLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolDiameterTextBlock"
@@ -145,7 +147,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Feedrate" 
+               Content="{Binding FeedRateLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="FeedRateTextBlock"
@@ -161,7 +163,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Spindle Speed" 
+               Content="{Binding SpindleSpeedLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="SpindleSpeedTextBlock"
@@ -177,7 +179,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Coolant" 
+               Content="{Binding CoolantLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="CoolantTextBlock"
@@ -193,7 +195,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Tool Plane" 
+               Content="{Binding ToolPlaneLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolPlaneTextBlock"
@@ -209,7 +211,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               Content="Work Offset" 
+               Content="{Binding WorkOffsetLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="WorkOffsetTextBlock"
@@ -220,26 +222,5 @@
                  TextAlignment="Right"
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding WorkOffset, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
-        <Button x:Name="CloseButton"
-                Grid.Row="10"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                IsCancel="True"
-                IsTabStop="False"
-                Width="72"
-                Height="36"
-                Visibility="Hidden"
-                ToolTip="Close Quick Parameters"
-                Command="{Binding CloseCommand}"
-                CommandParameter="{Binding ElementName=MainWindow}">
-            <StackPanel>
-                <Image Source="ButtonIcons/Close.png" 
-                       VerticalAlignment="Center"
-                       Height="32" 
-                       Width="32" />
-            </StackPanel>
-        </Button>
     </Grid>
 </Window>

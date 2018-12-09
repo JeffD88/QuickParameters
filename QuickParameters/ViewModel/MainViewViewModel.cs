@@ -14,6 +14,7 @@
     using GalaSoft.MvvmLight.Messaging;
 
     using QuickParameters.Commands;
+    using QuickParameters.Resources;
 
     public class MainViewViewModel : INotifyPropertyChanged
     {
@@ -35,7 +36,7 @@
 
         private Color parameterColor;
 
-        private string operationName;
+        private string operationHeading;
 
         private string toolName;
 
@@ -61,12 +62,25 @@
         {
             Messenger.Default.Register<Operation>(this, o => ReceiveSelectedOperation(o));
 
-            this.OnLightThemeCommand(null);
-
+            Initialize();
+         
             this.LightThemeCommand = new DelegateCommand(this.OnLightThemeCommand);
             this.DarkThemeCommand = new DelegateCommand(this.OnDarkThemeCommand);
             this.SolarizedThemeCommand = new DelegateCommand(this.OnSolarizedThemeCommand);
-            this.CloseCommand = new DelegateCommand(this.OnCloseCommand);
+        }
+
+        private void Initialize()
+        {
+            this.ToolNameLabel = Strings.ToolNameLabel;
+            this.ToolNumberLabel = Strings.ToolNumberLabel;
+            this.ToolDiameterLabel = Strings.ToolDiameterLabel;
+            this.FeedRateLabel = Strings.FeedRateLabel;
+            this.SpindleSpeedLabel = Strings.SpindleSpeedLabel;
+            this.CoolantLabel = Strings.CoolantLabel;
+            this.ToolPlaneLabel = Strings.ToolPlaneLabel;
+            this.WorkOffsetLabel = Strings.WorkOffsetLabel;
+
+            this.OnLightThemeCommand(null);
         }
 
         #endregion
@@ -79,11 +93,25 @@
 
         public ICommand SolarizedThemeCommand { get; }
 
-        public ICommand CloseCommand { get; }
-
         #endregion
 
         #region Public Properties
+
+        public string ToolNameLabel { get; set; }
+
+        public string ToolNumberLabel { get; set; }
+
+        public string ToolDiameterLabel { get; set; }
+
+        public string FeedRateLabel { get; set; }
+
+        public string SpindleSpeedLabel { get; set; }
+
+        public string CoolantLabel { get; set; }
+
+        public string ToolPlaneLabel { get; set; }
+
+        public string WorkOffsetLabel { get; set; }
 
         public SolidColorBrush BackgroundBrush
         {
@@ -177,14 +205,14 @@
             }
         }
 
-        public string OperationName
+        public string OperationHeading
         {
-            get => this.operationName;
+            get => this.operationHeading;
 
             set
             {
-                this.operationName = value;
-                OnPropertyChanged(nameof(this.OperationName));
+                this.operationHeading = value;
+                OnPropertyChanged(nameof(this.OperationHeading));
             }
         }
 
@@ -284,7 +312,7 @@
         {
             if (operation != null)
             {
-                this.OperationName = $"{GetOperationDescription(operation.Type)}{Environment.NewLine}" +
+                this.OperationHeading = $"{GetOperationDescription(operation.Type)}{Environment.NewLine}" +
                                      $"{operation.Name}";
 
                 if (operation.OperationTool != null)
@@ -318,154 +346,205 @@
             switch ((int)operationType)
             {
                 case 1:
-                    return "Contour";
+                    return Strings.Contour;
 
                 case 2:
-                    return "Drilling";
+                    return Strings.Drill;
 
                 case 3:
-                    return "Pocket";
+                    return Strings.Pocket;
 
                 case 4:
-                    return "Transform";
+                    return Strings.Transform;
 
                 case 5:
-                    return "Rough Parallel";
+                    return Strings.SurfaceRoughParallel;
 
                 case 6:
-                    return "Rough Radial";
+                    return Strings.SurfaceRoughRadial;
 
                 case 7:
-                    return "Rough Project";
+                    return Strings.SurfaceRoughProject;
 
                 case 8:
-                    return "Rough Flowline";
+                    return Strings.SurfaceRoughFlowline;
 
                 case 9:
-                    return "Rough Contour";
+                    return Strings.SurfaceRoughContour;
 
                 case 10:
-                    return "Rough Pocket";
+                    return Strings.SurfaceRoughPocket;
 
                 case 11:
-                    return "Finish Parallel";
+                    return Strings.SurfaceFinishParallel;
 
                 case 12:
-                    return "Finish Radial";
+                    return Strings.SurfaceFinishRadial;
 
                 case 13:
-                    return "Finish Project";
+                    return Strings.SurfaceFinishProject;
 
                 case 14:
-                    return "Finish Flowline";
+                    return Strings.SurfaceFinishFlowline;
 
                 case 15:
-                    return "Finish Contour";
-
-                case 16:
-                    return "C-Hook Created";
+                    return Strings.SurfaceFinishContour;
 
                 case 17:
-                    return "Manual Entry";
+                    return Strings.ManualEntry;
 
                 case 18:
-                    return "Circle mill";
+                    return Strings.CircleMill;
 
                 case 19:
-                    return "Point";
+                    return Strings.Point;
 
                 case 20:
-                    return "Trimmed";
+                    return Strings.Trimmed;
 
                 case 21:
-                    return "Ruled";
+                    return Strings.Ruled;
 
                 case 22:
-                    return "Revolved";
+                    return Strings.Revolved;
 
                 case 23:
-                    return "Letters";
+                    return Strings.Letters;
 
                 case 24:
-                    return "Swept 2D";
+                    return Strings.Swept2D;
 
                 case 25:
-                    return "Swept 3D";
+                    return Strings.Swept3D;
 
                 case 26:
-                    return "Coons";
+                    return Strings.Coons;
 
                 case 27:
-                    return "Lofted";
+                    return Strings.Lofted;
 
                 case 28:
-                    return "Multiaxis Drill";
+                    return Strings.MultiaxisDrill;
 
                 case 29:
                 case 444:
-                    return "Multiaxis Curve";
+                    return Strings.MultiaxisCurve;
+
+                case 44:
+                    return Strings.SurfaceRoughPlunge;
 
                 case 48:
                 case 441:
-                    return "Multiaxis SWARF";
+                    return Strings.MultiaxisSWARF;
 
                 case 442:
-                    return "Multiaxis Morph";
+                    return Strings.MultiaxisMorph;
 
                 case 100:
-                    return "Thread mill";
+                    return Strings.ThreadMill;
 
                 case 102:
-                    return "Facing";
+                    return Strings.Facing;
 
                 case 105:
-                    return "Slot Mill";
+                    return Strings.SlotMilling;
 
                 case 106:
-                    return "Helix Bore";
+                    return Strings.HelixBore;
+
+                case 111:
+                    return Strings.Slice5Axis;
+
+                case 112:
+                    return Strings.Port5Axis;
+
+                case 113:
+                    return Strings.FiveAxisCircle;
+
+                case 130:
+                    return Strings.TabCutoff;
+
+                case 131:
+                    return Strings.MultisurfaceRoughPocket;
 
                 case 132:
-                    return "Surface High Speed";
+                    return Strings.SurfaceHighSpeed;
+
+                case 133:
+                    return Strings.OnionskinNesting;
 
                 case 134:
-                    return "2D High Speed";
+                    return Strings.TwoDHighSpeed;
+
+                case 135:
+                    return Strings.Saw;
+
+                case 136:
+                    return Strings.FBMDrillControlOperation;
+
+                case 137:
+                    return Strings.FBMMillPocketOperation;
+
+                case 138:
+                    return Strings.FBMMillContourOperation;
+
+                case 139:
+                    return Strings.SolidModelOperation;
 
                 case 140:
-                    return "2D Model Chamfer";
+                    return Strings.ModelChamfer;
 
+                case 150:
+                    return Strings.ProbeCycleProbeMotion;
+
+                case 151:
+                    return Strings.ProbeCycleCommandBlock;
+
+                case 152:
+                    return Strings.ProbeCycleHeader;
+
+                case 153:
+                    return Strings.ProbeCycleTrailer;
+;
                 case 154:
                 case 155:
-                    return "Linking";
+                    return Strings.MultiaxisLink;
+
+                case 416:
+                    return Strings.Engraving;
+
+                case 439:
+                    return Strings.Art;
 
                 case 443:
-                    return "Multiaxis Parallel";
+                    return Strings.MultiaxisParallel;
 
                 case 445:
-                    return "Multiaxis Triangular Mesh";
+                    return Strings.MultiaxisTriangularMesh;
 
                 case 446:
-                    return "Multiaxis Roughing";
+                    return Strings.MultiaxisRoughing;
 
                 case 447:
-                    return "Multiaxis Project";
+                    return Strings.MultiaxisProject;
 
                 case 448:
-                    return "Convert to 5-axis";
+                    return Strings.ConvertTo5Axis;
 
                 case 449:
-                    return "Port Expert";
+                    return Strings.PortExpert;
 
                 case 450:
-                    return "Blade Expert";
+                    return Strings.BladeExpert;
 
                 case 451:
-                    return "Rotary Advanced";
+                    return Strings.RotaryAdvanced;
 
                 case 459:
-                    return "Deburr";
+                    return Strings.Deburr;
 
                 default:
-                    return "Undefined";
+                    return Strings.Unknown;
             }
         }
 
@@ -475,10 +554,10 @@
             {
                 if (states[i] == CoolantStateType.On)
                 {
-                    return "On";
+                    return Strings.CoolantOn;
                 }
             }
-            return "Off";
+            return Strings.CoolantOff;
         }
 
         private string GetCoolantStatus(CoolantMode mode)
@@ -486,15 +565,19 @@
             switch (mode)
             {
                 case CoolantMode.COOL_OFF:
-                    return "Off";
+                    return Strings.CoolantOff;
+
                 case CoolantMode.COOL_FLOOD:
-                    return "Flood";
+                    return Strings.CoolantFlood;
+
                 case CoolantMode.COOL_MIST:
-                    return "Mist";
+                    return Strings.CoolantMist;
+
                 case CoolantMode.COOL_TOOL:
-                    return "Thru-Tool";
+                    return Strings.CoolantThruTool;
+
                 default:
-                    return "Unknown";
+                    return Strings.Unknown;
             }
         }
 
@@ -513,65 +596,48 @@
         private void OnLightThemeCommand(object parameter)
         {
             var background = Color.FromRgb(255, 255, 255);
-            this.BackgroundBrush = new SolidColorBrush(background);
-            this.BackgroundColor = background;
-
             var heading = Color.FromRgb(0, 0, 0);
-            this.HeadingBrush = new SolidColorBrush(heading);
-            this.HeadingColor = heading;
-
             var labels = Color.FromRgb(0, 0, 0);
-            this.LabelBrush = new SolidColorBrush(labels);
-            this.LabelColor = labels;
-
             var parameters = Color.FromRgb(0, 0, 0);
-            this.ParameterBrush = new SolidColorBrush(parameters);
-            this.ParameterColor = parameters;          
+
+            SetTheme(background, heading, labels, parameters);
         }
 
         private void OnDarkThemeCommand(object parameter)
         {
             var background = Color.FromRgb(40, 40, 40);
-            this.BackgroundBrush = new SolidColorBrush(background);
-            this.BackgroundColor = background;
-
             var heading = Color.FromRgb(104, 157, 106);
-            this.HeadingBrush = new SolidColorBrush(heading);
-            this.HeadingColor = heading;
-
             var labels = Color.FromRgb(152, 151, 26);
-            this.LabelBrush = new SolidColorBrush(labels);
-            this.LabelColor = labels;
-
             var parameters = Color.FromRgb(146, 131, 116);
-            this.ParameterBrush = new SolidColorBrush(parameters);
-            this.ParameterColor = parameters;
+
+            SetTheme(background, heading, labels, parameters);
         }
 
         private void OnSolarizedThemeCommand(object parameter)
         {
             var background = Color.FromRgb(0, 43, 54);
+            var heading = Color.FromRgb(65, 133, 153);
+            var labels = Color.FromRgb(38, 139, 210);
+            var parameters = Color.FromRgb(101, 123, 131);
+
+            SetTheme(background, heading, labels, parameters);
+        }
+
+        private void SetTheme(Color background, Color heading, Color labels, Color parameters)
+        {
             this.BackgroundBrush = new SolidColorBrush(background);
             this.BackgroundColor = background;
 
-            var heading = Color.FromRgb(65, 133, 153);
             this.HeadingBrush = new SolidColorBrush(heading);
             this.HeadingColor = heading;
 
-            var labels = Color.FromRgb(38, 139, 210);
             this.LabelBrush = new SolidColorBrush(labels);
             this.LabelColor = labels;
 
-            var parameters = Color.FromRgb(101, 123, 131);
             this.ParameterBrush = new SolidColorBrush(parameters);
             this.ParameterColor = parameters;
         }
 
-        private void OnCloseCommand(object parameter)
-        {
-            var view = (Window)parameter;
-            view?.Close();
-        }
         #endregion
 
         #region Public Methods
