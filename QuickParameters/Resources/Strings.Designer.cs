@@ -70,6 +70,15 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        internal static string AutomaticWorkOffset {
+            get {
+                return ResourceManager.GetString("AutomaticWorkOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blade Expert.
         /// </summary>
         internal static string BladeExpert {
@@ -84,6 +93,132 @@ namespace QuickParameters.Resources {
         internal static string CircleMill {
             get {
                 return ResourceManager.GetString("CircleMill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background.
+        /// </summary>
+        internal static string ContextMenuBackground {
+            get {
+                return ResourceManager.GetString("ContextMenuBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Background Color.
+        /// </summary>
+        internal static string ContextMenuBackgroundHeader {
+            get {
+                return ResourceManager.GetString("ContextMenuBackgroundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        internal static string ContextMenuColors {
+            get {
+                return ResourceManager.GetString("ContextMenuColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        internal static string ContextMenuCustom {
+            get {
+                return ResourceManager.GetString("ContextMenuCustom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string ContextMenuDark {
+            get {
+                return ResourceManager.GetString("ContextMenuDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading.
+        /// </summary>
+        internal static string ContextMenuHeading {
+            get {
+                return ResourceManager.GetString("ContextMenuHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Heading Color.
+        /// </summary>
+        internal static string ContextMenuHeadingHeader {
+            get {
+                return ResourceManager.GetString("ContextMenuHeadingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Label.
+        /// </summary>
+        internal static string ContextMenuLabel {
+            get {
+                return ResourceManager.GetString("ContextMenuLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Label Color.
+        /// </summary>
+        internal static string ContextMenuLabelHeader {
+            get {
+                return ResourceManager.GetString("ContextMenuLabelHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string ContextMenuLight {
+            get {
+                return ResourceManager.GetString("ContextMenuLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        internal static string ContextMenuParameters {
+            get {
+                return ResourceManager.GetString("ContextMenuParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Parameter Color.
+        /// </summary>
+        internal static string ContextMenuParametersHeader {
+            get {
+                return ResourceManager.GetString("ContextMenuParametersHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solarized.
+        /// </summary>
+        internal static string ContextMenuSolarized {
+            get {
+                return ResourceManager.GetString("ContextMenuSolarized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themes.
+        /// </summary>
+        internal static string ContextMenuThemes {
+            get {
+                return ResourceManager.GetString("ContextMenuThemes", resourceCulture);
             }
         }
         

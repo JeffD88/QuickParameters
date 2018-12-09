@@ -1,0 +1,41 @@
+###############################################################################
+# NETHook function table			
+###############################################################################
+#
+# Name		: QuickParameters.ft
+# NETHook 	: QuickParameters.dll
+# Date		: 
+# Author	: 
+# Notes		:  ** Update all PROJECT_NAME references with the projects name **
+# Language	: C#
+#
+###############################################################################
+
+
+######################
+# ASSIGN A UNIQUE NAME
+######################
+APPLICATION "__QuickParameters__"
+
+######################
+# NETHook LOCATION
+######################
+#
+# Update paths below to match your install path and project name.
+FUNC_DLL   "CHOOKS\QuickParameters.dll"
+RES_DLL    "SAME"
+dnRES_NAME "QuickParameters.FunctionTable.Resource"
+CATEGORY   "Quick Parameters NET-Hook"
+
+##############################################################################
+# Public functions here
+##############################################################################
+#
+# The main system entry point defined in NethookMain.cs
+FUNCTION NET "Run"
+    dnSPNG "QuickParameters16"
+    dnLPNG "QuickParameters32"
+    dnTIP  "RunTip"
+END_FUNCTION
+
+# EOF

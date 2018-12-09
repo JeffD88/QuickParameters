@@ -14,50 +14,50 @@
     <Grid Background="Transparent">
         <Grid.ContextMenu>
             <ContextMenu>
-                <MenuItem Header = "Colors">
-                    <MenuItem Header = "Themes">
-                        <MenuItem Header = "Light"
+                <MenuItem Header = "{Binding ContextMenuColors}">
+                    <MenuItem Header = "{Binding ContextMenuThemes}">
+                        <MenuItem Header = "{Binding ContextMenuLight}"
                                   Command="{Binding LightThemeCommand}"/>
-                        <MenuItem Header = "Dark"
+                        <MenuItem Header = "{Binding ContextMenuDark}"
                                   Command="{Binding DarkThemeCommand}"/>
-                        <MenuItem Header = "Solarized"
+                        <MenuItem Header = "{Binding ContextMenuSolarized}"
                                   Command="{Binding SolarizedThemeCommand}"/>
                     </MenuItem>
-                    <MenuItem Header = "Custom">
-                        <MenuItem Header = "Background">
+                    <MenuItem Header = "{Binding ContextMenuCustom}">
+                        <MenuItem Header = "{Binding ContextMenuBackground}">
                             <xctk:ColorPicker x:Name="Background"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
                                               ShowRecentColors="False"
-                                              AvailableColorsHeader="Select a Background Color"
+                                              AvailableColorsHeader="{Binding ContextMenuBackgroundHeader}"
                                               SelectedColor="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
-                        <MenuItem Header = "Heading">
+                        <MenuItem Header = "{Binding ContextMenuHeading}">
                             <xctk:ColorPicker x:Name="Heading"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
                                               ShowRecentColors="False"
-                                              AvailableColorsHeader="Select a Heading Color"
+                                              AvailableColorsHeader="{Binding ContextMenuHeadingHeader}"
                                               SelectedColor="{Binding HeadingColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
-                        <MenuItem Header = "Label">
+                        <MenuItem Header = "{Binding ContextMenuLabel}">
                             <xctk:ColorPicker x:Name="Label"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
                                               ShowRecentColors="False"
-                                              AvailableColorsHeader="Select a Label Color"
+                                              AvailableColorsHeader="{Binding ContextMenuLabelHeader}"
                                               SelectedColor="{Binding LabelColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
-                        <MenuItem Header = "Parameters">
+                        <MenuItem Header = "{Binding ContextMenuParameters}">
                             <xctk:ColorPicker x:Name="Parameters"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
                                               ShowRecentColors="False"
-                                              AvailableColorsHeader="Select a Parameter Color"
+                                              AvailableColorsHeader="{Binding ContextMenuParametersHeader}"
                                               SelectedColor="{Binding ParameterColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
                     </MenuItem>

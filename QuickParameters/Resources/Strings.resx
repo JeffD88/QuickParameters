@@ -354,4 +354,49 @@
   <data name="WorkOffsetLabel" xml:space="preserve">
     <value>Work Offset</value>
   </data>
+  <data name="AutomaticWorkOffset" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="ContextMenuBackground" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="ContextMenuBackgroundHeader" xml:space="preserve">
+    <value>Select a Background Color</value>
+  </data>
+  <data name="ContextMenuColors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="ContextMenuCustom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="ContextMenuDark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ContextMenuHeading" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="ContextMenuHeadingHeader" xml:space="preserve">
+    <value>Select a Heading Color</value>
+  </data>
+  <data name="ContextMenuLabel" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="ContextMenuLabelHeader" xml:space="preserve">
+    <value>Select a Label Color</value>
+  </data>
+  <data name="ContextMenuLight" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="ContextMenuParameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="ContextMenuParametersHeader" xml:space="preserve">
+    <value>Select a Parameter Color</value>
+  </data>
+  <data name="ContextMenuSolarized" xml:space="preserve">
+    <value>Solarized</value>
+  </data>
+  <data name="ContextMenuThemes" xml:space="preserve">
+    <value>Themes</value>
+  </data>
 </root>

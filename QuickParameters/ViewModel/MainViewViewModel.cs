@@ -80,6 +80,21 @@
             this.ToolPlaneLabel = Strings.ToolPlaneLabel;
             this.WorkOffsetLabel = Strings.WorkOffsetLabel;
 
+            this.ContextMenuColors = Strings.ContextMenuColors;
+            this.ContextMenuThemes = Strings.ContextMenuThemes;
+            this.ContextMenuLight = Strings.ContextMenuLight;
+            this.ContextMenuDark = Strings.ContextMenuDark;
+            this.ContextMenuSolarized = Strings.ContextMenuSolarized;
+            this.ContextMenuCustom = Strings.ContextMenuCustom;
+            this.ContextMenuBackground = Strings.ContextMenuBackground;
+            this.ContextMenuBackgroundHeader = Strings.ContextMenuBackgroundHeader;
+            this.ContextMenuHeading = Strings.ContextMenuHeading;
+            this.ContextMenuHeadingHeader = Strings.ContextMenuHeadingHeader;
+            this.ContextMenuLabel = Strings.ContextMenuLabel;
+            this.ContextMenuLabelHeader = Strings.ToolNameLabel;
+            this.ContextMenuParameters = Strings.ContextMenuParameters;
+            this.ContextMenuParametersHeader = Strings.ContextMenuParametersHeader;
+
             this.OnLightThemeCommand(null);
         }
 
@@ -96,6 +111,34 @@
         #endregion
 
         #region Public Properties
+
+        public string ContextMenuColors { get; set; }
+
+        public string ContextMenuThemes { get; set; }
+
+        public string ContextMenuLight { get; set; }
+
+        public string ContextMenuDark { get; set; }
+
+        public string ContextMenuSolarized { get; set; }
+
+        public string ContextMenuCustom { get; set; }
+
+        public string ContextMenuBackground { get; set; }
+
+        public string ContextMenuBackgroundHeader { get; set; }
+
+        public string ContextMenuHeading { get; set; }
+
+        public string ContextMenuHeadingHeader { get; set; }
+
+        public string ContextMenuLabel { get; set; }
+
+        public string ContextMenuLabelHeader { get; set; }
+
+        public string ContextMenuParameters { get; set; }
+
+        public string ContextMenuParametersHeader { get; set; }
 
         public string ToolNameLabel { get; set; }
 
@@ -585,7 +628,7 @@
         {
             if (workOffset < 0)
             {
-                return "Automatic";
+                return Strings.AutomaticWorkOffset;
             }
             else
             {
