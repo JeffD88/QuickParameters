@@ -270,8 +270,8 @@
   <data name="SlotMilling" xml:space="preserve">
     <value>Slot Milling</value>
   </data>
-  <data name="SolidModelOperation" xml:space="preserve">
-    <value>Solid Model Operation</value>
+  <data name="StockModelOperation" xml:space="preserve">
+    <value>Stock Model</value>
   </data>
   <data name="SpindleSpeedLabel" xml:space="preserve">
     <value>Spindle Speed</value>
@@ -398,5 +398,11 @@
   </data>
   <data name="ContextMenuThemes" xml:space="preserve">
     <value>Themes</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="StockPlane" xml:space="preserve">
+    <value>Stock Plane</value>
   </data>
 </root>

@@ -2,10 +2,9 @@
 {
     using System;
     using System.Windows.Media;
+    using System.Windows.Input;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Windows;
-    using System.Windows.Input;
 
     using Mastercam.Database;
     using Mastercam.Database.Types;
@@ -36,6 +35,8 @@
 
         private Color parameterColor;
 
+        private string toolPlaneLabel;
+
         private string operationHeading;
 
         private string toolName;
@@ -63,7 +64,7 @@
             Messenger.Default.Register<Operation>(this, o => ReceiveSelectedOperation(o));
 
             Initialize();
-         
+
             this.LightThemeCommand = new DelegateCommand(this.OnLightThemeCommand);
             this.DarkThemeCommand = new DelegateCommand(this.OnDarkThemeCommand);
             this.SolarizedThemeCommand = new DelegateCommand(this.OnSolarizedThemeCommand);
@@ -152,7 +153,16 @@
 
         public string CoolantLabel { get; set; }
 
-        public string ToolPlaneLabel { get; set; }
+        public string ToolPlaneLabel
+        {
+        get => this.toolPlaneLabel;
+
+            set
+            {
+                this.toolPlaneLabel = value;
+                OnPropertyChanged(nameof(this.ToolPlaneLabel));
+            }
+        }
 
         public string WorkOffsetLabel { get; set; }
 
@@ -353,10 +363,12 @@
 
         private object ReceiveSelectedOperation(Operation operation)
         {
+            ClearParameters();
+
             if (operation != null)
             {
                 this.OperationHeading = $"{GetOperationDescription(operation.Type)}{Environment.NewLine}" +
-                                     $"{operation.Name}";
+                                        $"{operation.Name}";
 
                 if (operation.OperationTool != null)
                 {
@@ -368,20 +380,25 @@
                 this.Feedrate = operation.FeedRate;
                 this.SpindleSpeed = operation.SpindleSpeed;
 
-                if (operation.Coolant.OperationCoolant == 0)
-                {
-                    this.Coolant = GetCoolantStatus(operation.Coolant.States);
-                }
-                else
-                {
-                    this.Coolant = GetCoolantStatus(operation.Coolant.OperationCoolant);
-                }
-                
-                this.ToolPlane = operation.ToolPlane.ViewName;
-                this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
+                SetCoolantToolPlaneWorkOffset(operation);
             }
 
             return null;
+        }
+
+        private void ClearParameters()
+        {
+            this.ToolPlaneLabel = Strings.ToolPlaneLabel;
+
+            this.OperationHeading = string.Empty;
+            this.ToolName = Strings.NoData;
+            this.ToolNumber = 0;
+            this.ToolDiameter = 0;
+            this.Feedrate = 0;
+            this.SpindleSpeed = 0;
+            this.Coolant = Strings.NoData;
+            this.ToolPlane = Strings.NoData;
+            this.WorkOffset = Strings.NoData;
         }
 
         private string GetOperationDescription(OperationType operationType)
@@ -532,7 +549,7 @@
                     return Strings.FBMMillContourOperation;
 
                 case 139:
-                    return Strings.SolidModelOperation;
+                    return Strings.StockModelOperation;
 
                 case 140:
                     return Strings.ModelChamfer;
@@ -588,6 +605,48 @@
 
                 default:
                     return Strings.Unknown;
+            }
+        }
+
+        private void SetCoolantToolPlaneWorkOffset(Operation operation)
+        {
+            switch ((int)operation.Type)
+            {
+                case 4:
+                case 17:
+                case 154:
+                case 155:
+                    break;
+
+                case 139:
+                    this.Coolant = Strings.NoData;
+                    this.ToolPlaneLabel = Strings.StockPlane;
+                    this.ToolPlane = operation.ToolPlane.ViewName;
+                    this.WorkOffset = Strings.NoData;
+                    break;
+
+                case 150:
+                case 151:
+                case 152:
+                case 153:
+                    this.Coolant = Strings.NoData;
+                    this.ToolPlane = operation.ToolPlane.ViewName;
+                    this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
+                    break;
+
+                default:
+                    if (operation.Coolant.OperationCoolant == 0)
+                    {
+                        this.Coolant = GetCoolantStatus(operation.Coolant.States);
+                    }
+                    else
+                    {
+                        this.Coolant = GetCoolantStatus(operation.Coolant.OperationCoolant);
+                    }
+
+                    this.ToolPlane = operation.ToolPlane.ViewName;
+                    this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
+                    break;
             }
         }
 

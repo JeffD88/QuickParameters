@@ -25,7 +25,7 @@
                     </MenuItem>
                     <MenuItem Header = "{Binding ContextMenuCustom}">
                         <MenuItem Header = "{Binding ContextMenuBackground}">
-                            <xctk:ColorPicker x:Name="Background"
+                            <xctk:ColorPicker x:Name="BackgroundCP"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
@@ -34,7 +34,7 @@
                                               SelectedColor="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
                         <MenuItem Header = "{Binding ContextMenuHeading}">
-                            <xctk:ColorPicker x:Name="Heading"
+                            <xctk:ColorPicker x:Name="HeadingCP"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
@@ -43,7 +43,7 @@
                                               SelectedColor="{Binding HeadingColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
                         <MenuItem Header = "{Binding ContextMenuLabel}">
-                            <xctk:ColorPicker x:Name="Label"
+                            <xctk:ColorPicker x:Name="LabelCP"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"
@@ -52,7 +52,7 @@
                                               SelectedColor="{Binding LabelColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </MenuItem>
                         <MenuItem Header = "{Binding ContextMenuParameters}">
-                            <xctk:ColorPicker x:Name="Parameters"
+                            <xctk:ColorPicker x:Name="ParametersCP"
                                               Width="100"
                                               ShowAvailableColors="True"
                                               ShowStandardColors="False"

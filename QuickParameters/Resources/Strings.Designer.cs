@@ -520,6 +520,15 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Onionskin Nesting.
         /// </summary>
         internal static string OnionskinNesting {
@@ -655,20 +664,29 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Solid Model Operation.
-        /// </summary>
-        internal static string SolidModelOperation {
-            get {
-                return ResourceManager.GetString("SolidModelOperation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Spindle Speed.
         /// </summary>
         internal static string SpindleSpeedLabel {
             get {
                 return ResourceManager.GetString("SpindleSpeedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock Model.
+        /// </summary>
+        internal static string StockModelOperation {
+            get {
+                return ResourceManager.GetString("StockModelOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock Plane.
+        /// </summary>
+        internal static string StockPlane {
+            get {
+                return ResourceManager.GetString("StockPlane", resourceCulture);
             }
         }
         
