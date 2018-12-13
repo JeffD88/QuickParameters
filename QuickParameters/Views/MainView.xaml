@@ -1,72 +1,38 @@
-﻿<Window xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  x:Name="MainWindow" x:Class="QuickParameters.Views.MainView"
+﻿<Window x:Name="MainWindow" x:Class="QuickParameters.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:QuickParameters.Views"
         mc:Ignorable="d" 
-        MinHeight="525" MinWidth="325"
-        Height="525" Width="325"
-        MaxWidth="450"
+        MinHeight="600" MinWidth="350"
+        Height="600" Width="350"
+        MaxWidth="600"
         Title="Quick Parameters"
         Icon="/QuickParameters;component/Icon/QuickParameters.ico" Topmost="True"
         Background="{Binding BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+    
     <Grid Background="Transparent">
         <Grid.ContextMenu>
             <ContextMenu>
-                <MenuItem Header = "{Binding ContextMenuColors}">
-                    <MenuItem Header = "{Binding ContextMenuThemes}">
-                        <MenuItem Header = "{Binding ContextMenuLight}"
-                                  Command="{Binding LightThemeCommand}"/>
-                        <MenuItem Header = "{Binding ContextMenuDark}"
-                                  Command="{Binding DarkThemeCommand}"/>
-                        <MenuItem Header = "{Binding ContextMenuSolarized}"
-                                  Command="{Binding SolarizedThemeCommand}"/>
-                    </MenuItem>
-                    <MenuItem Header = "{Binding ContextMenuCustom}">
-                        <MenuItem Header = "{Binding ContextMenuBackground}">
-                            <xctk:ColorPicker x:Name="BackgroundCP"
-                                              Width="100"
-                                              ShowAvailableColors="True"
-                                              ShowStandardColors="False"
-                                              ShowRecentColors="False"
-                                              AvailableColorsHeader="{Binding ContextMenuBackgroundHeader}"
-                                              SelectedColor="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        </MenuItem>
-                        <MenuItem Header = "{Binding ContextMenuHeading}">
-                            <xctk:ColorPicker x:Name="HeadingCP"
-                                              Width="100"
-                                              ShowAvailableColors="True"
-                                              ShowStandardColors="False"
-                                              ShowRecentColors="False"
-                                              AvailableColorsHeader="{Binding ContextMenuHeadingHeader}"
-                                              SelectedColor="{Binding HeadingColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        </MenuItem>
-                        <MenuItem Header = "{Binding ContextMenuLabel}">
-                            <xctk:ColorPicker x:Name="LabelCP"
-                                              Width="100"
-                                              ShowAvailableColors="True"
-                                              ShowStandardColors="False"
-                                              ShowRecentColors="False"
-                                              AvailableColorsHeader="{Binding ContextMenuLabelHeader}"
-                                              SelectedColor="{Binding LabelColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        </MenuItem>
-                        <MenuItem Header = "{Binding ContextMenuParameters}">
-                            <xctk:ColorPicker x:Name="ParametersCP"
-                                              Width="100"
-                                              ShowAvailableColors="True"
-                                              ShowStandardColors="False"
-                                              ShowRecentColors="False"
-                                              AvailableColorsHeader="{Binding ContextMenuParametersHeader}"
-                                              SelectedColor="{Binding ParameterColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                        </MenuItem>
-                    </MenuItem>
+                <MenuItem Header = "{Binding ContextMenuThemes}">
+                    <MenuItem Header = "{Binding ContextMenuLight}"
+                              Command="{Binding LightThemeCommand}"/>
+                    <MenuItem Header = "{Binding ContextMenuDark}"
+                              Command="{Binding DarkThemeCommand}"/>
+                    <MenuItem Header = "{Binding ContextMenuGruvBox}"
+                              Command="{Binding GruvBoxThemeCommand}"/>
+                    <MenuItem Header = "{Binding ContextMenuSolarized}"
+                              Command="{Binding SolarizedThemeCommand}"/>
                 </MenuItem>
             </ContextMenu>
         </Grid.ContextMenu>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -80,7 +46,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="125"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
@@ -115,6 +81,7 @@
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
+               Margin="15 0 0 0"
                Content="{Binding ToolNumberLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
@@ -125,12 +92,13 @@
                    HorizontalAlignment="Right"
                    TextAlignment="Right"
                    Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                   Text="{Binding ToolNumber, StringFormat={}{0:########}, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+                   Text="{Binding ToolNumber, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
         <Label x:Name="ToolDiameterLabel"
                Grid.Row="4"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
+               Margin="15 0 0 0"
                Content="{Binding ToolDiameterLabel}" 
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
@@ -141,9 +109,43 @@
                    HorizontalAlignment="Right"
                    TextAlignment="Right"
                    Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                   Text="{Binding ToolDiameter, StringFormat={}{0:#.######}, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
-        <Label x:Name="FeedRateLabel"
+                   Text="{Binding ToolDiameter, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+        <Label x:Name="ToolLengthOffsetLabel"
                Grid.Row="5"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="15 0 0 0"
+               Content="{Binding ToolLengthOffsetLabel}" 
+               FontSize="16"
+               Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <TextBlock x:Name="ToolLengthOffsetTextBlock"
+                   Grid.Row="5"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   TextAlignment="Right"
+                   Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                   Text="{Binding ToolLengthOffset, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+        <Label x:Name="ToolDiameterOffsetLabel"
+               Grid.Row="6"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="15 0 0 0"
+               Content="{Binding ToolDiameterOffsetLabel}" 
+               FontSize="16"
+               Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <TextBlock x:Name="ToolDiameterOffsetTextBlock"
+                   Grid.Row="6"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   TextAlignment="Right"
+                   Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                   Text="{Binding ToolDiameterOffset, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+        <Label x:Name="FeedRateLabel"
+               Grid.Row="7"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -151,15 +153,15 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="FeedRateTextBlock"
-                   Grid.Row="5"
+                   Grid.Row="7"
                    Grid.Column="2"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"
                    TextAlignment="Right"
                    Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                   Text="{Binding Feedrate, StringFormat={}{0:#.#####}, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+                   Text="{Binding Feedrate, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
         <Label x:Name="SpindleSpeedLabel"
-               Grid.Row="6"
+               Grid.Row="8"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -167,15 +169,15 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="SpindleSpeedTextBlock"
-                 Grid.Row="6"
+                 Grid.Row="8"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"
                  TextAlignment="Right"
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                 Text="{Binding SpindleSpeed, StringFormat={}{0:#.#####}, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+                 Text="{Binding SpindleSpeed, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
         <Label x:Name="CoolantLabel"
-               Grid.Row="7"
+               Grid.Row="9"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -183,7 +185,7 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="CoolantTextBlock"
-                 Grid.Row="7"
+                 Grid.Row="9"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"
@@ -191,7 +193,7 @@
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding Coolant, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
         <Label x:Name="ToolPlaneLabel"
-               Grid.Row="8"
+               Grid.Row="10"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -199,7 +201,7 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolPlaneTextBlock"
-                 Grid.Row="8"
+                 Grid.Row="10"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"
@@ -207,7 +209,7 @@
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding ToolPlane, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
         <Label x:Name="WorkOffsetLabel"
-               Grid.Row="9"
+               Grid.Row="11"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -215,7 +217,7 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="WorkOffsetTextBlock"
-                 Grid.Row="9"
+                 Grid.Row="11"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"

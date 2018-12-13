@@ -328,13 +328,13 @@
     <value>Thread Mill</value>
   </data>
   <data name="ToolDiameterLabel" xml:space="preserve">
-    <value>Tool Diameter</value>
+    <value>Diameter</value>
   </data>
   <data name="ToolNameLabel" xml:space="preserve">
-    <value>Tool Name</value>
+    <value>Tool</value>
   </data>
   <data name="ToolNumberLabel" xml:space="preserve">
-    <value>Tool Number</value>
+    <value>Number</value>
   </data>
   <data name="ToolPlaneLabel" xml:space="preserve">
     <value>Tool Plane</value>
@@ -357,41 +357,11 @@
   <data name="AutomaticWorkOffset" xml:space="preserve">
     <value>Automatic</value>
   </data>
-  <data name="ContextMenuBackground" xml:space="preserve">
-    <value>Background</value>
-  </data>
-  <data name="ContextMenuBackgroundHeader" xml:space="preserve">
-    <value>Select a Background Color</value>
-  </data>
-  <data name="ContextMenuColors" xml:space="preserve">
-    <value>Colors</value>
-  </data>
-  <data name="ContextMenuCustom" xml:space="preserve">
-    <value>Custom</value>
-  </data>
   <data name="ContextMenuDark" xml:space="preserve">
     <value>Dark</value>
   </data>
-  <data name="ContextMenuHeading" xml:space="preserve">
-    <value>Heading</value>
-  </data>
-  <data name="ContextMenuHeadingHeader" xml:space="preserve">
-    <value>Select a Heading Color</value>
-  </data>
-  <data name="ContextMenuLabel" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="ContextMenuLabelHeader" xml:space="preserve">
-    <value>Select a Label Color</value>
-  </data>
   <data name="ContextMenuLight" xml:space="preserve">
     <value>Light</value>
-  </data>
-  <data name="ContextMenuParameters" xml:space="preserve">
-    <value>Parameters</value>
-  </data>
-  <data name="ContextMenuParametersHeader" xml:space="preserve">
-    <value>Select a Parameter Color</value>
   </data>
   <data name="ContextMenuSolarized" xml:space="preserve">
     <value>Solarized</value>
@@ -400,9 +370,18 @@
     <value>Themes</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>N/A</value>
+    <value />
   </data>
   <data name="StockPlane" xml:space="preserve">
     <value>Stock Plane</value>
+  </data>
+  <data name="ContextMenuGruvBox" xml:space="preserve">
+    <value>Gruvbox</value>
+  </data>
+  <data name="ToolDiameterOffsetLabel" xml:space="preserve">
+    <value>Diameter Offset</value>
+  </data>
+  <data name="ToolLengthOffsetLabel" xml:space="preserve">
+    <value>Length Offset</value>
   </data>
 </root>

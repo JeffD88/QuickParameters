@@ -97,42 +97,6 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background.
-        /// </summary>
-        internal static string ContextMenuBackground {
-            get {
-                return ResourceManager.GetString("ContextMenuBackground", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a Background Color.
-        /// </summary>
-        internal static string ContextMenuBackgroundHeader {
-            get {
-                return ResourceManager.GetString("ContextMenuBackgroundHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Colors.
-        /// </summary>
-        internal static string ContextMenuColors {
-            get {
-                return ResourceManager.GetString("ContextMenuColors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Custom.
-        /// </summary>
-        internal static string ContextMenuCustom {
-            get {
-                return ResourceManager.GetString("ContextMenuCustom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
         internal static string ContextMenuDark {
@@ -142,38 +106,11 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Heading.
+        ///   Looks up a localized string similar to Gruvbox.
         /// </summary>
-        internal static string ContextMenuHeading {
+        internal static string ContextMenuGruvBox {
             get {
-                return ResourceManager.GetString("ContextMenuHeading", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a Heading Color.
-        /// </summary>
-        internal static string ContextMenuHeadingHeader {
-            get {
-                return ResourceManager.GetString("ContextMenuHeadingHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Label.
-        /// </summary>
-        internal static string ContextMenuLabel {
-            get {
-                return ResourceManager.GetString("ContextMenuLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a Label Color.
-        /// </summary>
-        internal static string ContextMenuLabelHeader {
-            get {
-                return ResourceManager.GetString("ContextMenuLabelHeader", resourceCulture);
+                return ResourceManager.GetString("ContextMenuGruvBox", resourceCulture);
             }
         }
         
@@ -183,24 +120,6 @@ namespace QuickParameters.Resources {
         internal static string ContextMenuLight {
             get {
                 return ResourceManager.GetString("ContextMenuLight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Parameters.
-        /// </summary>
-        internal static string ContextMenuParameters {
-            get {
-                return ResourceManager.GetString("ContextMenuParameters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a Parameter Color.
-        /// </summary>
-        internal static string ContextMenuParametersHeader {
-            get {
-                return ResourceManager.GetString("ContextMenuParametersHeader", resourceCulture);
             }
         }
         
@@ -520,7 +439,7 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to N/A.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string NoData {
             get {
@@ -844,7 +763,7 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tool Diameter.
+        ///   Looks up a localized string similar to Diameter.
         /// </summary>
         internal static string ToolDiameterLabel {
             get {
@@ -853,7 +772,25 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tool Name.
+        ///   Looks up a localized string similar to Diameter Offset.
+        /// </summary>
+        internal static string ToolDiameterOffsetLabel {
+            get {
+                return ResourceManager.GetString("ToolDiameterOffsetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length Offset.
+        /// </summary>
+        internal static string ToolLengthOffsetLabel {
+            get {
+                return ResourceManager.GetString("ToolLengthOffsetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool.
         /// </summary>
         internal static string ToolNameLabel {
             get {
@@ -862,7 +799,7 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tool Number.
+        ///   Looks up a localized string similar to Number.
         /// </summary>
         internal static string ToolNumberLabel {
             get {

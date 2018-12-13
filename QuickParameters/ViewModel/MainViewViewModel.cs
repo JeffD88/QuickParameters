@@ -41,13 +41,17 @@
 
         private string toolName;
 
-        private int toolNumber;
+        private string toolNumber;
 
-        private double toolDiameter;
+        private string toolDiameter;
 
-        private double feedrate;
+        private string toolLengthOffset;
 
-        private int spindleSpeed;
+        private string toolDiameterOffset;
+
+        private string feedrate;
+
+        private string spindleSpeed;
 
         private string coolant;
 
@@ -67,6 +71,7 @@
 
             this.LightThemeCommand = new DelegateCommand(this.OnLightThemeCommand);
             this.DarkThemeCommand = new DelegateCommand(this.OnDarkThemeCommand);
+            this.GruvBoxThemeCommand = new DelegateCommand(this.OnGruvBoxThemeCommand);
             this.SolarizedThemeCommand = new DelegateCommand(this.OnSolarizedThemeCommand);
         }
 
@@ -75,26 +80,19 @@
             this.ToolNameLabel = Strings.ToolNameLabel;
             this.ToolNumberLabel = Strings.ToolNumberLabel;
             this.ToolDiameterLabel = Strings.ToolDiameterLabel;
+            this.ToolLengthOffsetLabel = Strings.ToolLengthOffsetLabel;
+            this.ToolDiameterOffsetLabel = Strings.ToolDiameterOffsetLabel;
             this.FeedRateLabel = Strings.FeedRateLabel;
             this.SpindleSpeedLabel = Strings.SpindleSpeedLabel;
             this.CoolantLabel = Strings.CoolantLabel;
             this.ToolPlaneLabel = Strings.ToolPlaneLabel;
             this.WorkOffsetLabel = Strings.WorkOffsetLabel;
 
-            this.ContextMenuColors = Strings.ContextMenuColors;
             this.ContextMenuThemes = Strings.ContextMenuThemes;
             this.ContextMenuLight = Strings.ContextMenuLight;
             this.ContextMenuDark = Strings.ContextMenuDark;
+            this.ContextMenuGruvBox = Strings.ContextMenuGruvBox;
             this.ContextMenuSolarized = Strings.ContextMenuSolarized;
-            this.ContextMenuCustom = Strings.ContextMenuCustom;
-            this.ContextMenuBackground = Strings.ContextMenuBackground;
-            this.ContextMenuBackgroundHeader = Strings.ContextMenuBackgroundHeader;
-            this.ContextMenuHeading = Strings.ContextMenuHeading;
-            this.ContextMenuHeadingHeader = Strings.ContextMenuHeadingHeader;
-            this.ContextMenuLabel = Strings.ContextMenuLabel;
-            this.ContextMenuLabelHeader = Strings.ToolNameLabel;
-            this.ContextMenuParameters = Strings.ContextMenuParameters;
-            this.ContextMenuParametersHeader = Strings.ContextMenuParametersHeader;
 
             this.OnLightThemeCommand(null);
         }
@@ -107,13 +105,13 @@
 
         public ICommand DarkThemeCommand { get; }
 
+        public ICommand GruvBoxThemeCommand { get; }
+
         public ICommand SolarizedThemeCommand { get; }
 
         #endregion
 
         #region Public Properties
-
-        public string ContextMenuColors { get; set; }
 
         public string ContextMenuThemes { get; set; }
 
@@ -121,25 +119,9 @@
 
         public string ContextMenuDark { get; set; }
 
-        public string ContextMenuSolarized { get; set; }
+        public string ContextMenuGruvBox { get; set; }
 
-        public string ContextMenuCustom { get; set; }
-
-        public string ContextMenuBackground { get; set; }
-
-        public string ContextMenuBackgroundHeader { get; set; }
-
-        public string ContextMenuHeading { get; set; }
-
-        public string ContextMenuHeadingHeader { get; set; }
-
-        public string ContextMenuLabel { get; set; }
-
-        public string ContextMenuLabelHeader { get; set; }
-
-        public string ContextMenuParameters { get; set; }
-
-        public string ContextMenuParametersHeader { get; set; }
+        public string ContextMenuSolarized { get; set; }        
 
         public string ToolNameLabel { get; set; }
 
@@ -147,6 +129,10 @@
 
         public string ToolDiameterLabel { get; set; }
 
+        public string ToolLengthOffsetLabel { get; set; }
+
+        public string ToolDiameterOffsetLabel { get; set; }
+        
         public string FeedRateLabel { get; set; }
 
         public string SpindleSpeedLabel { get; set; }
@@ -280,7 +266,7 @@
             }
         }
 
-        public int ToolNumber
+        public string ToolNumber
         {
             get => toolNumber;
 
@@ -291,7 +277,7 @@
             }
         }
 
-        public double ToolDiameter
+        public string ToolDiameter
         {
             get => toolDiameter;
 
@@ -302,7 +288,29 @@
             }
         }
 
-        public double Feedrate
+        public string ToolLengthOffset
+        {
+            get => toolLengthOffset;
+
+            set
+            {
+                toolLengthOffset = value;
+                OnPropertyChanged(nameof(ToolLengthOffset));
+            }
+        }
+
+        public string ToolDiameterOffset
+        {
+            get => toolDiameterOffset;
+
+            set
+            {
+                toolDiameterOffset = value;
+                OnPropertyChanged(nameof(ToolDiameterOffset));
+            }
+        }
+
+        public string Feedrate
         {
             get => feedrate;
 
@@ -313,7 +321,7 @@
             }
         }
 
-        public int SpindleSpeed
+        public string SpindleSpeed
         {
             get => spindleSpeed;
 
@@ -373,12 +381,14 @@
                 if (operation.OperationTool != null)
                 {
                     this.ToolName = operation.OperationTool.Name;
-                    this.ToolNumber = operation.OperationTool.Number;
-                    this.ToolDiameter = operation.OperationTool.Diameter;
+                    this.ToolNumber = operation.OperationTool.Number.ToString();
+                    this.ToolDiameter = operation.OperationTool.Diameter.ToString("#.######");
+                    this.ToolLengthOffset = operation.OperationTool.LengthOffset.ToString();
+                    this.ToolDiameterOffset = operation.OperationTool.DiameterOffset.ToString();
                 }
 
-                this.Feedrate = operation.FeedRate;
-                this.SpindleSpeed = operation.SpindleSpeed;
+                this.Feedrate = operation.FeedRate.ToString("#.######");
+                this.SpindleSpeed = operation.SpindleSpeed.ToString("#.######");
 
                 SetCoolantToolPlaneWorkOffset(operation);
             }
@@ -392,10 +402,12 @@
 
             this.OperationHeading = string.Empty;
             this.ToolName = Strings.NoData;
-            this.ToolNumber = 0;
-            this.ToolDiameter = 0;
-            this.Feedrate = 0;
-            this.SpindleSpeed = 0;
+            this.ToolNumber = Strings.NoData;
+            this.ToolDiameter = Strings.NoData;
+            this.ToolLengthOffset = Strings.NoData;
+            this.ToolDiameterOffset = Strings.NoData;
+            this.Feedrate = Strings.NoData;
+            this.SpindleSpeed = Strings.NoData;
             this.Coolant = Strings.NoData;
             this.ToolPlane = Strings.NoData;
             this.WorkOffset = Strings.NoData;
@@ -706,6 +718,16 @@
         }
 
         private void OnDarkThemeCommand(object parameter)
+        {
+            var background = Color.FromRgb(30, 30, 30);
+            var heading = Color.FromRgb(78, 201, 176);
+            var labels = Color.FromRgb(86, 156, 214);
+            var parameters = Color.FromRgb(200, 200, 200);
+
+            SetTheme(background, heading, labels, parameters);
+        }
+
+        private void OnGruvBoxThemeCommand(object parameter)
         {
             var background = Color.FromRgb(40, 40, 40);
             var heading = Color.FromRgb(104, 157, 106);
