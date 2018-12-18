@@ -853,6 +853,15 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick Parameters.
+        /// </summary>
+        internal static string WindowTitle {
+            get {
+                return ResourceManager.GetString("WindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Offset.
         /// </summary>
         internal static string WorkOffsetLabel {

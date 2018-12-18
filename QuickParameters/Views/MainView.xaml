@@ -8,8 +8,8 @@
         MinHeight="600" MinWidth="350"
         Height="600" Width="350"
         MaxWidth="600"
-        Title="Quick Parameters"
-        Icon="/QuickParameters;component/Icon/QuickParameters.ico" Topmost="True"
+        Title="{Binding WindowTitle}"
+        Icon="/QuickParameters;component/Icon/QuickParameters.ico"
         Background="{Binding BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
     
     <Grid Background="Transparent">

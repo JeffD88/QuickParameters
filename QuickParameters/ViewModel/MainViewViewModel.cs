@@ -21,19 +21,11 @@
 
         private SolidColorBrush backgroundBrush;
 
-        private Color backgroundColor;
-
         private SolidColorBrush headingBrush;
-
-        private Color headingColor;
 
         private SolidColorBrush labelBrush;
 
-        private Color labelColor;
-
         private SolidColorBrush parameterBrush;
-
-        private Color parameterColor;
 
         private string toolPlaneLabel;
 
@@ -77,6 +69,7 @@
 
         private void Initialize()
         {
+            this.WindowTitle = Strings.WindowTitle;
             this.ToolNameLabel = Strings.ToolNameLabel;
             this.ToolNumberLabel = Strings.ToolNumberLabel;
             this.ToolDiameterLabel = Strings.ToolDiameterLabel;
@@ -113,6 +106,8 @@
 
         #region Public Properties
 
+        public string WindowTitle { get; set; }
+        
         public string ContextMenuThemes { get; set; }
 
         public string ContextMenuLight { get; set; }
@@ -163,18 +158,6 @@
             }
         }
 
-        public Color BackgroundColor
-        {
-            get => this.backgroundColor;
-
-            set
-            {
-                this.backgroundColor = value;
-                this.BackgroundBrush = new SolidColorBrush(this.backgroundColor);
-                OnPropertyChanged(nameof(this.BackgroundColor));
-            }
-        }
-
         public SolidColorBrush HeadingBrush
         {
             get => this.headingBrush;
@@ -183,18 +166,6 @@
             {
                 this.headingBrush = value;
                 OnPropertyChanged(nameof(this.HeadingBrush));
-            }
-        }
-
-        public Color HeadingColor
-        {
-            get => this.headingColor;
-
-            set
-            {
-                this.headingColor = value;
-                this.HeadingBrush = new SolidColorBrush(this.headingColor);
-                OnPropertyChanged(nameof(this.HeadingColor));
             }
         }
 
@@ -209,18 +180,6 @@
             }
         }
 
-        public Color LabelColor
-        {
-            get => this.labelColor;
-
-            set
-            {
-                this.labelColor = value;
-                this.LabelBrush = new SolidColorBrush(this.labelColor);
-                OnPropertyChanged(nameof(this.LabelColor));
-            }
-        }
-
         public SolidColorBrush ParameterBrush
         {
             get => this.parameterBrush;
@@ -229,18 +188,6 @@
             {
                 this.parameterBrush = value;
                 OnPropertyChanged(nameof(this.ParameterBrush));
-            }
-        }
-
-        public Color ParameterColor
-        {
-            get => this.parameterColor;
-
-            set
-            {
-                this.parameterColor = value;
-                this.ParameterBrush = new SolidColorBrush(this.parameterColor);
-                OnPropertyChanged(nameof(this.ParameterColor));
             }
         }
 
@@ -472,6 +419,7 @@
                     return Strings.Point;
 
                 case 20:
+                case 103:
                     return Strings.Trimmed;
 
                 case 21:
@@ -577,7 +525,7 @@
 
                 case 153:
                     return Strings.ProbeCycleTrailer;
-;
+
                 case 154:
                 case 155:
                     return Strings.MultiaxisLink;
@@ -626,6 +574,7 @@
             {
                 case 4:
                 case 17:
+                case 103:
                 case 154:
                 case 155:
                     break;
@@ -750,16 +699,9 @@
         private void SetTheme(Color background, Color heading, Color labels, Color parameters)
         {
             this.BackgroundBrush = new SolidColorBrush(background);
-            this.BackgroundColor = background;
-
             this.HeadingBrush = new SolidColorBrush(heading);
-            this.HeadingColor = heading;
-
             this.LabelBrush = new SolidColorBrush(labels);
-            this.LabelColor = labels;
-
             this.ParameterBrush = new SolidColorBrush(parameters);
-            this.ParameterColor = parameters;
         }
 
         #endregion

@@ -384,4 +384,7 @@
   <data name="ToolLengthOffsetLabel" xml:space="preserve">
     <value>Length Offset</value>
   </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Quick Parameters</value>
+  </data>
 </root>

@@ -1,11 +1,15 @@
 ﻿namespace QuickParameters
 {
-    using GalaSoft.MvvmLight.Messaging;
+    using System.Linq;
+
     using Mastercam.App;
     using Mastercam.App.Types;
     using Mastercam.Support;
-    using System.Linq;
+
+    using GalaSoft.MvvmLight.Messaging;
+
     using QuickParameters.Views;
+
 
     public class Main : NetHook3App
     {
