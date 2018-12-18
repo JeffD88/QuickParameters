@@ -574,23 +574,25 @@
             {
                 case 4:
                 case 17:
-                case 103:
                 case 154:
                 case 155:
                     break;
 
+                case 20:
+                case 103:
+                    this.ToolPlane = operation.ToolPlane.ViewName;
+                    this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
+                    break;
+
                 case 139:
-                    this.Coolant = Strings.NoData;
                     this.ToolPlaneLabel = Strings.StockPlane;
                     this.ToolPlane = operation.ToolPlane.ViewName;
-                    this.WorkOffset = Strings.NoData;
                     break;
 
                 case 150:
                 case 151:
                 case 152:
                 case 153:
-                    this.Coolant = Strings.NoData;
                     this.ToolPlane = operation.ToolPlane.ViewName;
                     this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
                     break;
