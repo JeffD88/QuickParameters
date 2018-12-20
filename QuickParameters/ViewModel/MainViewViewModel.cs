@@ -598,7 +598,7 @@
                     break;
 
                 default:
-                    if (operation.Coolant.OperationCoolant == 0)
+                    if (!operation.Coolant.UseValuesFromPost)
                     {
                         this.Coolant = GetCoolantStatus(operation.Coolant.States);
                     }
