@@ -4,6 +4,7 @@
     using System.Windows.Media;
     using System.Windows.Input;
     using System.ComponentModel;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
     using Mastercam.Database;
@@ -14,6 +15,7 @@
 
     using QuickParameters.Commands;
     using QuickParameters.Resources;
+    using Mastercam.Support;
 
     public class MainViewViewModel : INotifyPropertyChanged
     {
@@ -47,6 +49,8 @@
 
         private string coolant;
 
+        private string wcs;
+
         private string toolPlane;
 
         private string workOffset;
@@ -57,7 +61,7 @@
 
         public MainViewViewModel()
         {
-            Messenger.Default.Register<Operation>(this, o => ReceiveSelectedOperation(o));
+            Messenger.Default.Register<Operation>(this, op => ReceiveSelectedOperation(op));
 
             Initialize();
 
@@ -78,6 +82,7 @@
             this.FeedRateLabel = Strings.FeedRateLabel;
             this.SpindleSpeedLabel = Strings.SpindleSpeedLabel;
             this.CoolantLabel = Strings.CoolantLabel;
+            this.WCSLabel = Strings.WCSLabel;
             this.ToolPlaneLabel = Strings.ToolPlaneLabel;
             this.WorkOffsetLabel = Strings.WorkOffsetLabel;
 
@@ -133,6 +138,8 @@
         public string SpindleSpeedLabel { get; set; }
 
         public string CoolantLabel { get; set; }
+
+        public string WCSLabel { get; set; }
 
         public string ToolPlaneLabel
         {
@@ -290,6 +297,17 @@
             }
         }
 
+        public string WCS
+        {
+            get => this.wcs;
+
+            set
+            {
+                this.wcs = value;
+                OnPropertyChanged(nameof(this.WCS));
+            }
+        }
+
         public string ToolPlane
         {
             get => this.toolPlane;
@@ -356,6 +374,7 @@
             this.Feedrate = Strings.NoData;
             this.SpindleSpeed = Strings.NoData;
             this.Coolant = Strings.NoData;
+            this.WCS = Strings.NoData;
             this.ToolPlane = Strings.NoData;
             this.WorkOffset = Strings.NoData;
         }
@@ -580,6 +599,11 @@
 
                 case 20:
                 case 103:
+                case 150:
+                case 151:
+                case 152:
+                case 153:
+                    this.WCS = operation.WCS.ViewName;
                     this.ToolPlane = operation.ToolPlane.ViewName;
                     this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
                     break;
@@ -589,37 +613,40 @@
                     this.ToolPlane = operation.ToolPlane.ViewName;
                     break;
 
-                case 150:
-                case 151:
-                case 152:
-                case 153:
-                    this.ToolPlane = operation.ToolPlane.ViewName;
-                    this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
-                    break;
-
                 default:
-                    if (!operation.Coolant.UseValuesFromPost)
-                    {
-                        this.Coolant = GetCoolantStatus(operation.Coolant.States);
+                    if (operation.Coolant.UseValuesFromPost)
+                    {                      
+                        this.Coolant = GetCoolantStatus(operation.Coolant.OperationCoolant);
                     }
                     else
                     {
-                        this.Coolant = GetCoolantStatus(operation.Coolant.OperationCoolant);
+                        this.Coolant = GetCoolantStatus(operation);
                     }
-
+                    this.WCS = operation.WCS.ViewName;
                     this.ToolPlane = operation.ToolPlane.ViewName;
                     this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
                     break;
             }
         }
 
-        private string GetCoolantStatus(CoolantState states)
+        private string GetCoolantStatus(Operation operation)
         {
+            var coolantDescriptions = new List<string>();
+            var coolantOnStrings = new List<string>();
+            var coolantOffStrings = new List<string>();
+
+            var coolantStates = operation.Coolant.States;
+
+            MachineDefManager.GetCoolantLabelStrings(operation,
+                                                     coolantDescriptions, 
+                                                     coolantOnStrings,
+                                                     coolantOffStrings);
+
             for (int i = 0; i < 10; i++)
             {
-                if (states[i] == CoolantStateType.On)
+                if (coolantStates[i] == CoolantStateType.On)
                 {
-                    return Strings.CoolantOn;
+                    return coolantDescriptions[i];
                 }
             }
             return Strings.CoolantOff;

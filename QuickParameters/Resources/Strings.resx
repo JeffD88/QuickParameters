@@ -387,4 +387,7 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Quick Parameters</value>
   </data>
+  <data name="WCSLabel" xml:space="preserve">
+    <value>WCS</value>
+  </data>
 </root>

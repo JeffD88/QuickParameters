@@ -41,6 +41,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -192,8 +193,24 @@
                  TextAlignment="Right"
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding Coolant, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
-        <Label x:Name="ToolPlaneLabel"
+        <Label x:Name="WCSLabel"
                Grid.Row="10"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Content="{Binding WCSLabel}" 
+               FontSize="16"
+               Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <TextBlock x:Name="WCSTextBlock"
+                 Grid.Row="10"
+                 Grid.Column="2"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Right"
+                 TextAlignment="Right"
+                 Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Text="{Binding WCS, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
+        <Label x:Name="ToolPlaneLabel"
+               Grid.Row="11"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -201,7 +218,7 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="ToolPlaneTextBlock"
-                 Grid.Row="10"
+                 Grid.Row="11"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"
@@ -209,7 +226,7 @@
                  Foreground="{Binding ParameterBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding ToolPlane, UpdateSourceTrigger=PropertyChanged}" Margin="0,9,0,10" FontSize="16"/>
         <Label x:Name="WorkOffsetLabel"
-               Grid.Row="11"
+               Grid.Row="12"
                Grid.Column="1"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
@@ -217,7 +234,7 @@
                FontSize="16"
                Foreground="{Binding LabelBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBlock x:Name="WorkOffsetTextBlock"
-                 Grid.Row="11"
+                 Grid.Row="12"
                  Grid.Column="2"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Right"

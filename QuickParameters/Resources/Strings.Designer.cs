@@ -853,6 +853,15 @@ namespace QuickParameters.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WCS.
+        /// </summary>
+        internal static string WCSLabel {
+            get {
+                return ResourceManager.GetString("WCSLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quick Parameters.
         /// </summary>
         internal static string WindowTitle {
