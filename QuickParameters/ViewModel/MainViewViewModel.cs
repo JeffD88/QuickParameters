@@ -7,15 +7,14 @@
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
+    using Mastercam.Support;
     using Mastercam.Database;
     using Mastercam.Database.Types;
-    using Mastercam.Operations.Types;
 
     using GalaSoft.MvvmLight.Messaging;
 
     using QuickParameters.Commands;
     using QuickParameters.Resources;
-    using Mastercam.Support;
 
     public class MainViewViewModel : INotifyPropertyChanged
     {
@@ -26,6 +25,8 @@
         private SolidColorBrush headingBrush;
 
         private SolidColorBrush labelBrush;
+
+        private SolidColorBrush subLabelBrush;
 
         private SolidColorBrush parameterBrush;
 
@@ -47,7 +48,11 @@
 
         private string spindleSpeed;
 
-        private string coolant;
+        private string legacyCoolant;
+
+        private string coolantDescriptions;
+
+        private string coolantStatus;
 
         private string wcs;
 
@@ -82,6 +87,7 @@
             this.FeedRateLabel = Strings.FeedRateLabel;
             this.SpindleSpeedLabel = Strings.SpindleSpeedLabel;
             this.CoolantLabel = Strings.CoolantLabel;
+            this.CoolantDescriptions = string.Empty;
             this.WCSLabel = Strings.WCSLabel;
             this.ToolPlaneLabel = Strings.ToolPlaneLabel;
             this.WorkOffsetLabel = Strings.WorkOffsetLabel;
@@ -112,7 +118,7 @@
         #region Public Properties
 
         public string WindowTitle { get; set; }
-        
+
         public string ContextMenuThemes { get; set; }
 
         public string ContextMenuLight { get; set; }
@@ -121,7 +127,7 @@
 
         public string ContextMenuGruvBox { get; set; }
 
-        public string ContextMenuSolarized { get; set; }        
+        public string ContextMenuSolarized { get; set; }
 
         public string ToolNameLabel { get; set; }
 
@@ -132,7 +138,7 @@
         public string ToolLengthOffsetLabel { get; set; }
 
         public string ToolDiameterOffsetLabel { get; set; }
-        
+
         public string FeedRateLabel { get; set; }
 
         public string SpindleSpeedLabel { get; set; }
@@ -184,6 +190,17 @@
             {
                 this.labelBrush = value;
                 OnPropertyChanged(nameof(this.LabelBrush));
+            }
+        }
+
+        public SolidColorBrush SubLabelBrush
+        {
+            get => this.subLabelBrush;
+
+            set
+            {
+                this.subLabelBrush = value;
+                OnPropertyChanged(nameof(this.SubLabelBrush));
             }
         }
 
@@ -286,14 +303,36 @@
             }
         }
 
-        public string Coolant
+        public string LegacyCoolant
         {
-            get => this.coolant;
+            get => this.legacyCoolant;
 
             set
             {
-                this.coolant = value;
-                OnPropertyChanged(nameof(this.Coolant));
+                this.legacyCoolant = value;
+                OnPropertyChanged(nameof(this.LegacyCoolant));
+            }
+        }
+        
+        public string CoolantDescriptions
+        {
+            get => this.coolantDescriptions;
+
+            set
+            {
+                this.coolantDescriptions = value;
+                OnPropertyChanged(nameof(this.CoolantDescriptions));
+            }
+        }
+
+        public string CoolantStatus
+        {
+            get => this.coolantStatus;
+
+            set
+            {
+                this.coolantStatus = value;
+                OnPropertyChanged(nameof(this.CoolantStatus));
             }
         }
 
@@ -373,7 +412,9 @@
             this.ToolDiameterOffset = Strings.NoData;
             this.Feedrate = Strings.NoData;
             this.SpindleSpeed = Strings.NoData;
-            this.Coolant = Strings.NoData;
+            this.LegacyCoolant = string.Empty;
+            this.CoolantDescriptions = string.Empty;
+            this.CoolantStatus = string.Empty;
             this.WCS = Strings.NoData;
             this.ToolPlane = Strings.NoData;
             this.WorkOffset = Strings.NoData;
@@ -615,13 +656,14 @@
 
                 default:
                     if (operation.Coolant.UseValuesFromPost)
-                    {                      
-                        this.Coolant = GetCoolantStatus(operation.Coolant.OperationCoolant);
+                    {
+                        SetLegacyCoolantStatus(operation);
                     }
                     else
                     {
-                        this.Coolant = GetCoolantStatus(operation);
+                        SetCoolantDescriptionsAndStatus(operation);
                     }
+
                     this.WCS = operation.WCS.ViewName;
                     this.ToolPlane = operation.ToolPlane.ViewName;
                     this.WorkOffset = GetWorkOffset(operation.ToolPlane.WorkOffsetNumber);
@@ -629,50 +671,65 @@
             }
         }
 
-        private string GetCoolantStatus(Operation operation)
+        private void SetLegacyCoolantStatus(Operation operation)
         {
-            var coolantDescriptions = new List<string>();
-            var coolantOnStrings = new List<string>();
-            var coolantOffStrings = new List<string>();
+            coolantDescriptions = string.Empty;
+
+            switch (operation.Coolant.OperationCoolant)
+            {
+                case CoolantMode.COOL_OFF:
+                    coolantStatus = Strings.CoolantOff;
+                    break;
+
+                case CoolantMode.COOL_FLOOD:
+                    coolantStatus = Strings.CoolantFlood;
+                    break;
+
+                case CoolantMode.COOL_MIST:
+                    coolantStatus = Strings.CoolantMist;
+                    break;
+
+                case CoolantMode.COOL_TOOL:
+                    coolantStatus = Strings.CoolantThruTool;
+                    break;
+
+                default:
+                    coolantStatus = Strings.NoData;
+                    break;
+            }
+
+            this.LegacyCoolant = coolantStatus;
+        }
+
+        private void SetCoolantDescriptionsAndStatus(Operation operation)
+        {
+            var coolantStatus = string.Empty;
+            var coolantDescriptions = string.Empty;
 
             var coolantStates = operation.Coolant.States;
 
+            var coolantLabels = new List<string>();
+            var coolantOnStrings = new List<string>();
+            var coolantOffStrings = new List<string>();
+
             MachineDefManager.GetCoolantLabelStrings(operation,
-                                                     coolantDescriptions, 
+                                                     coolantLabels,
                                                      coolantOnStrings,
                                                      coolantOffStrings);
 
             for (int i = 0; i < 10; i++)
             {
-                if (coolantStates[i] == CoolantStateType.On)
-                {
-                    return coolantDescriptions[i];
-                }
+
+                coolantDescriptions += $"{coolantLabels[i]}{Environment.NewLine}";
+                coolantStatus += $"{coolantStates[i]}{Environment.NewLine}";
+
             }
-            return Strings.CoolantOff;
+
+            this.CoolantDescriptions = coolantDescriptions;
+            this.CoolantStatus = coolantStatus;
+
         }
-
-        private string GetCoolantStatus(CoolantMode mode)
-        {
-            switch (mode)
-            {
-                case CoolantMode.COOL_OFF:
-                    return Strings.CoolantOff;
-
-                case CoolantMode.COOL_FLOOD:
-                    return Strings.CoolantFlood;
-
-                case CoolantMode.COOL_MIST:
-                    return Strings.CoolantMist;
-
-                case CoolantMode.COOL_TOOL:
-                    return Strings.CoolantThruTool;
-
-                default:
-                    return Strings.Unknown;
-            }
-        }
-
+    
         private string GetWorkOffset(short workOffset)
         {
             if (workOffset < 0)
@@ -690,9 +747,10 @@
             var background = Color.FromRgb(255, 255, 255);
             var heading = Color.FromRgb(0, 0, 0);
             var labels = Color.FromRgb(0, 0, 0);
+            var subLabels = Color.FromRgb(0, 0, 0);
             var parameters = Color.FromRgb(0, 0, 0);
 
-            SetTheme(background, heading, labels, parameters);
+            SetTheme(background, heading, labels, subLabels, parameters);
         }
 
         private void OnDarkThemeCommand(object parameter)
@@ -700,9 +758,10 @@
             var background = Color.FromRgb(30, 30, 30);
             var heading = Color.FromRgb(78, 201, 176);
             var labels = Color.FromRgb(86, 156, 214);
+            var subLabels = Color.FromRgb(184, 215, 163);
             var parameters = Color.FromRgb(200, 200, 200);
 
-            SetTheme(background, heading, labels, parameters);
+            SetTheme(background, heading, labels, subLabels, parameters);
         }
 
         private void OnGruvBoxThemeCommand(object parameter)
@@ -710,26 +769,29 @@
             var background = Color.FromRgb(40, 40, 40);
             var heading = Color.FromRgb(104, 157, 106);
             var labels = Color.FromRgb(152, 151, 26);
+            var subLabels = Color.FromRgb(69, 133, 136);
             var parameters = Color.FromRgb(146, 131, 116);
 
-            SetTheme(background, heading, labels, parameters);
+            SetTheme(background, heading, labels, subLabels, parameters);
         }
 
         private void OnSolarizedThemeCommand(object parameter)
         {
             var background = Color.FromRgb(0, 43, 54);
-            var heading = Color.FromRgb(65, 133, 153);
+            var heading = Color.FromRgb(42, 161, 152);
             var labels = Color.FromRgb(38, 139, 210);
+            var subLabels = Color.FromRgb(65, 133, 153);
             var parameters = Color.FromRgb(101, 123, 131);
 
-            SetTheme(background, heading, labels, parameters);
+            SetTheme(background, heading, labels, subLabels, parameters);
         }
 
-        private void SetTheme(Color background, Color heading, Color labels, Color parameters)
+        private void SetTheme(Color background, Color heading, Color labels, Color subLabels, Color parameters)
         {
             this.BackgroundBrush = new SolidColorBrush(background);
             this.HeadingBrush = new SolidColorBrush(heading);
             this.LabelBrush = new SolidColorBrush(labels);
+            this.SubLabelBrush = new SolidColorBrush(subLabels);
             this.ParameterBrush = new SolidColorBrush(parameters);
         }
 
